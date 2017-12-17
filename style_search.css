@@ -1,19 +1,76 @@
 #main {
-	background-color : white;
+	background-color : brown;
 }
 
-#hand1 {
-	transition : ;
+*, *:before, *:after {
+	box-sizing: border-box;
 }
 
-#hand2 {
-	transition : ;
+body {
+	font-family: sans-serif;
+	padding: 60px 20px;
+}
+@media (min-width: 600px) {
+	body {
+		padding: 60px;
+  }
 }
 
-#hand3 {
-	transition : ;
+.range-slider {
+	margin: 60px 0 0 0%;
+	width: 100%;
 }
 
-@keyframes hand {
-	0%
+.range-slider p {
+	text-align: center;
+}
+
+.slider-range {
+	-webkit-appearance: none;
+	width: calc(100% - (350px));
+	height: 10px;
+	border-radius: 5px;
+	background: #d7dcdf;
+	outline: none;
+	padding: 0;
+	margin: 0;
+}
+.slider-range::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: #2c3e50;
+	cursor: pointer;
+	-webkit-transition: background 0.15s ease-in-out;
+}
+.slider-range::-webkit-slider-thumb:hover {
+	background: #1abc9c;
+}
+.slider-range:active::-webkit-slider-thumb {
+	background: #1abc9c;
+}
+
+.slider-value {
+	display: inline-block;
+	position: relative;
+	width: 80px;
+	color: #fff;
+	line-height: 20px;
+	text-align: center;
+	border-radius: 3px;
+	background: #2c3e50;
+	padding: 5px 10px;
+	margin-left: 8px;
+}
+.slider-value:after {
+	position: absolute;
+	top: 8px;
+	left: -7px;
+	width: 0;
+	height: 0;
+	border-top: 7px solid transparent;
+	border-right: 7px solid #2c3e50;
+	border-bottom: 7px solid transparent;
+	content: "";
 }
