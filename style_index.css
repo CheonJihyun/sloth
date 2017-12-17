@@ -1,0 +1,72 @@
+@font-face {
+	font-family : ;
+	src : url(.ttf);
+}
+
+.main {
+	background-color : white;
+/*	font-family : ;*/
+	overflow : hidden;
+}
+
+@keyframes title {
+	from { top : 150px; }
+	to { top : 15px; }
+}
+
+.title {
+	position : relative;
+	animation-name : title;
+	animation-duration : 4s;
+	animation-delay : 1.5s;
+	animation-fill-mode : both;
+}
+
+.title p {
+	color : white;
+	font-size : 6em;
+	text-align : center;
+}
+
+.background img {
+	width : 100%;
+	height : auto;
+	position : absolute;
+	top : 0;
+	left : 0;
+	z-index : -1;
+}
+
+@keyframes recommendation {
+	from { opacity : 0; }
+	to { opacity : 1; }
+}
+
+.recommendation {
+	animation-name : recommendation;
+	animation-duration : 5s;
+	animation-delay : 2s;
+	animation-fill-mode : both;
+}
+
+.recommendation p {
+	font-size : 2em;
+	color : white;
+	text-align : center;
+}
+
+#answer {
+	list-style-type : none;
+	text-align : center;
+}
+
+#answer li {
+	display : inline;
+	padding-right : 15px;
+	font-size : 2em;
+}
+
+#answer a {
+	text-decoration : none;
+	color : white;
+}
