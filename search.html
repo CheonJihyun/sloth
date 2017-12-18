@@ -6,27 +6,24 @@
 	<meta name="viewport" content="initial-scale=1.0">
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="style_search.css">
+	<script src="http://code.jquery.com/jquery-1.5.js"></script>
 	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-	<style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 350px;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2LWPm4NAkrHM43Si-C7PVOkQg4FSqrZ8&callback=initMap"></script>
 </head>
 
 <body class="search">
 	<div class="title">
+		<p><img src="images/title.png" alt="S L O T H"></p>
+	</div>
+	<div class="menu">
+		<ul class="menu_list">
+			<li>RECOMMEND</li>
+			<li>SEARCH</li>
+			<li>PHOTOLOG</li>
+		</ul>
 	</div>
 	<div class="category">
-		<ul class="select">
+		<ul class="category_list">
 			<li>WALK</li>
 			<li>HIKE</li>
 		</ul>
@@ -34,16 +31,15 @@
 	<div class="input" id="walkinput">
 		<form onsubmit="return input()"> <!--action="walk_search.php" method="get">-->
 			<div class="walk_form" id="lnk_nam">
-				<p>Name of Trail<br></p><input type="text" id="trail" name="trail">
+				<p>Name of Trail<br><br><input type="text" id="trail" name="trail"></p>
 			</div>
 			<div class="walk_form" id="cos_nam">
-				<p>Name of Course<br></p><input type="text" id="course" name="course">
+				<p>Name of Course<br><br><input type="text" id="course" name="course"></p>
 			</div>
 			<div class="walk_form" id="cos_lvl">
-				<p>Difficulty</p><br>
-				<img src="" alt="easy"><br><input type="radio" name="difficulty" value="하"><br>
-				<img src="" alt="medium"><br><input type="radio" name="difficulty" value="중"><br>
-				<img src="" alt="hard"><br><input type="radio" name="difficulty" value="상"><br>
+				<p>Difficulty<br><br>
+				<img src="" alt="easy"><img src="" alt="medium"><img src="" alt="hard"><br>
+				<input type="radio" name="difficulty" value="하"><input type="radio" name="difficulty" value="중"><input type="radio" name="difficulty" value="상"><br></p>
 			</div>
 			<div class="walk_form" id="len_time">
 				<p>Consuming Time<br></p>
@@ -59,49 +55,35 @@
 					<span class="slider-value">300000</span>
 				</p></div>
 				<div id="map"></div>
-			<br><input type="submit" value="Submit"><br>
+			<br><p><input type="submit" value="Submit"></p><br>
 		</form>
 
-		<script> // slider 옆에 실시간으로 값 띄우기
-			var rangeSlider = function(){
-				var slider = $('.range-slider'),
-				range = $('.slider-range'),
-				value = $('.slider-value');
-
-				slider.each(function(){
-					value.each(function(){
-						var value = $(this).prev().attr('value');
-						$(this).html(value);
-					});
-					range.on('input', function(){
-						$(this).next(value).html(this.value);
-					});
-				});
-			};
-			rangeSlider();
-		</script>
-
-		<script> // forms에서 입력받은 데이터 가져오고 필터링하기
-			var trail, course, difficulty, time, distance;
+		<script>
+			// forms에서 입력받은 데이터 가져오고 필터링하기
+			var difficulty, time, distance, filter = "";
 			function input() {
 				if (this.readyState==4 && this.status==200) {
-					trail = document.getElementById("trail").value;
-					course = document.getElementById("course").value;
+//					var ;
+					filter += "&filter=lnk_nam=" + document.getElementById("trail").value;
+					filter += "&filter=cos_nam=" + document.getElementById("course").value;
 					var tempLevel = document.getElementByName("difficulty");
 					for (var i=0 ; i<difficulty.length() ; i++) {
-						if (sample[i].checked == true) {
-							difficulty = sample[i].value;
+						if (tempLevel[i].checked == true) {
+							difficulty = tempLevel[i].value;
 						}
 					}
+					difficulty = $("input[type=radio][name=difficulty]:checked").val();
 					time = document.getElementById("time").value;
 					distance = document.getElementById("distance").value;
 				}
 
-				var filter;
-				if (trail != "")
-					filter += "&filter=lnk_nam=" + trail;
-				if (course != "")
-					filter += "&filter=cos_nam=" + course;
+/*&filter=lnk_nam=[object HTMLInputElement]&filter=cos_nam=[object HTMLInputElement]&filter=len_time:<:[object HTMLInputElement]*/
+
+				
+//				if (trail != null)
+//					filter += "&filter=lnk_nam=" + trail;
+//				if (course != "")
+//					filter += "&filter=cos_nam=" + course;
 				if (difficulty != null) filter += "&filter=cos_lvl:=:" + difficulty;
 				if (time != null) filter += "&filter=len_time:<:" + time;
 
@@ -125,18 +107,36 @@
 				
 			}
 		</script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2LWPm4NAkrHM43Si-C7PVOkQg4FSqrZ8&callback=initMap" async defer>
-    	</script>
+		
     	<script type="text/javascript">
-    	// google map api 불러와서 지도 그리고 distance 입력값에 따라 원그리기
+			// slider 옆에 실시간으로 값 띄우기
+			var rangeSlider = function(){
+				var slider = $('.range-slider'),
+				range = $('.slider-range'),
+				value = $('.slider-value');
+
+				slider.each(function(){
+					value.each(function(){
+						var value = $(this).prev().attr('value');
+						$(this).html(value);
+					});
+					range.on('input', function(){
+						$(this).next(value).html(this.value);
+					});
+				});
+			};
+			rangeSlider();
+    		
+    		// google map api 불러와서 지도 그리고 distance 입력값에 따라 원그리기
 			var map, infoWindow;
     		function initMap() {
     			map = new google.maps.Map(document.getElementById("map"), {
     				center: new google.maps.LatLng(33.450701, 126.570667),
-    				zoom: 10,
+    				zoom: 6,
     				mapTypeId: google.maps.MapTypeId.roadmap
     			});
     			infoWindow = new google.maps.InfoWindow;
+
     			var circleOptions = new google.maps.Circle({
 					strokeColor : "FF0000",
 					strokeOpacity : 0.8,
@@ -145,9 +145,12 @@
 					fillOpacity : 0.3,
 					map : map,
 					center : map.center,
-					radius : 2000
+					radius : 300000
 					//document.getElementById("distance").value
 				});
+//    			slider-range.addEventListener('input', circleOptions.radius, false);
+//    			slider-range.addEventListener('input', circleOptions.radius, false);
+    			circleOptions.radius = $('slider-range').val();
 
 //   		google.maps.event.addDomListener(window, 'load', initMap);
 

@@ -2,6 +2,10 @@
 	background-color : brown;
 }
 
+#map {
+	height: 350px;
+}
+
 *, *:before, *:after {
 	box-sizing: border-box;
 }
@@ -14,6 +18,14 @@ body {
 	body {
 		padding: 60px;
   }
+}
+
+.title p {
+	text-align : center;
+}
+
+.walk_form p {
+	text-align : center;
 }
 
 .range-slider {
