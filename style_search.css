@@ -11,7 +11,7 @@
 }
 
 body {
-	font-family: sans-serif;
+	font-family : sans-serif;
 	padding: 60px 20px;
 }
 @media (min-width: 600px) {
@@ -20,8 +20,34 @@ body {
   }
 }
 
+.title {
+	padding-bottom : 3px;
+}
+
 .title p {
 	text-align : center;
+}
+
+.menu_list, .category_list {
+	list-style-type : none;
+	text-align : center;
+}
+
+.menu_list li {
+	display : inline;
+	padding-right : 15px;
+	font-size : 1em;
+}
+
+.menu_list a {
+	text-decoration : none;
+	color : DarkGray;
+}
+
+.category_list li {
+	display : inline;
+	padding-right : 15px;
+	font-size : 1em;
 }
 
 .walk_form p {

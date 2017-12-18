@@ -13,13 +13,13 @@
 
 <body class="search">
 	<div class="title">
-		<p><img src="images/title.png" alt="S L O T H"></p>
+		<p><a href="index.html"><img src="images/title.png" alt="S L O T H"></a></p>
 	</div>
 	<div class="menu">
 		<ul class="menu_list">
-			<li>RECOMMEND</li>
-			<li>SEARCH</li>
-			<li>PHOTOLOG</li>
+			<li><a href="recommend.html">RECOMMEND</a></li>
+			<li><a href="search.html">SEARCH</a></li>
+			<li><a href="photolog.html">PHOTOLOG</a></li>
 		</ul>
 	</div>
 	<div class="category">
@@ -60,25 +60,28 @@
 
 		<script>
 			// forms에서 입력받은 데이터 가져오고 필터링하기
-			var difficulty, time, distance;
+			var trail, course, difficulty, time, distance;
 			var filter = "";
 			function input() {
 				if (this.readyState==4 && this.status==200) {
-					filter += "&filter=lnk_nam=" + document.getElementById("trail").value;
-					filter += "&filter=cos_nam=" + document.getElementById("course").value;
-					var tempLevel = document.getElementByName("difficulty");
+					trail = document.getElementById('trail').value;
+					course = document.getElementById('course').value;
+					var tempLevel = document.getElementByName('difficulty');
 					for (var i=0 ; i<difficulty.length() ; i++) {
 						if (tempLevel[i].checked == true) {
 							difficulty = tempLevel[i].value;
 						}
 					}
 					difficulty = $("input[type=radio][name=difficulty]:checked").val();
-					filter += "&filter=len_time:<:" + document.getElementById("time").value;
-					distance = document.getElementById("distance").value;
+					time = document.getElementById('time').value;
+					distance = document.getElementById('distance').value;
 				}
 
 /*&filter=lnk_nam=[object HTMLInputElement]&filter=cos_nam=[object HTMLInputElement]&filter=len_time:<:[object HTMLInputElement]*/
-
+	
+				filter += "&filter=lnk_nam=" + trail;
+				filter += "&filter=cos_nam=" + course;
+				filter += "&filter=len_time:<:" + time;
 				if (difficulty != null) filter += "&filter=cos_lvl:=:" + difficulty;
 
 				alert(filter);

@@ -18,17 +18,19 @@
 	z-index : -1;
 }
 
+.slides p {
+	text-align : center;
+}
+
 .slidesTitle {
 	position : absolute;
 	top : 20%;
-	text-align : center;
 	color : white;
 }
 
 .slidesSub {
 	position : absolute;
 	top : 28%;
-	text-align : center;
 	color : white;
 }
 
