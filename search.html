@@ -11,9 +11,9 @@
 		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2LWPm4NAkrHM43Si-C7PVOkQg4FSqrZ8&callback=initMap"></script>
 	</head>
 
-	<body class="search" onload="input();">
+	<body class="search">
 		<div class="title">
-			<p><a href="index.html"><img src="images/title.png" alt="S L O T H"></a></p>
+			<pre>  <a href="index.html"><img src="images/title.png" alt="S L O T H"></a></pre>
 		</div>
 		<div class="menu">
 			<ul class="menu_list">
@@ -23,18 +23,18 @@
 			</ul>
 		</div>
 		<div class="input" id="walkinput">
-			<form onsubmit="return input()">
-				<!--action="walk_search.php" method="get">-->
+			<form>
 				<div class="walk_form" id="lnk_nam">
-					<p>Name of Trail<br><br><input id="trail" type="text" name="trail"></p>
+					<p>Name of Trail<br><br><input id="trail" type="text" name="trail" size="40"></p>
 				</div>
 				<div class="walk_form" id="cos_nam">
-					<p>Name of Course<br><br><input id="course" type="text" name="course"></p>
+					<p>Name of Course<br><br><input id="course" type="text" name="course" size="40"></p>
 				</div>
 				<div class="walk_form" id="cos_lvl">
-					<p>Difficulty<br><br>
-						<img src="" alt="easy"><img src="" alt="medium"><img src="" alt="hard"><br>
-						<input type="radio" name="difficulty" value="하"><input type="radio" name="difficulty" value="중"><input type="radio" name="difficulty" value="상"><br></p>
+					<p>Difficulty<br></p>
+					<div class="level_div"><p><img src="images/sport.png" alt="easy"><br><input type="radio" name="difficulty" value="하"></p></div>
+					<div class="level_div"><p><img src="images/sport.png" alt="medium"><br><input type="radio" name="difficulty" value="중"></p></div>
+					<div class="level_div"><p><img src="images/sport.png" alt="hard"><br><input type="radio" name="difficulty" value="상"></p></div><br>
 				</div>
 				<div class="walk_form" id="len_time">
 					<p>Consuming Time<br></p>
@@ -45,26 +45,27 @@
 						</p>
 					</div>
 				</div>
-				<div class="walk_form" id="distance">
+				<div class="walk_form" id="pointCal">
 					<p>Distance from Current Position<br></p>
 					<div class="range-slider">
 						<p>
 							<input class="slider-range" id="distance" type="range" name="distance" min="0" max="600000">
 							<span class="slider-value">300000</span>
-						</p>
+						</p><br>
 					</div>
 					<div id="map"></div>
 					<br>
-					<p> <a onclick="input();">subbb</a> </p>
+					<p><a onclick="input();">Submit</a></p>
 					<p><input type="submit" value="Submit"></p><br>
 			</form>
 
 			<script>
 				// forms에서 입력받은 데이터 가져오고 필터링하기
 				var trail, course, difficulty, time, distance;
-				var filter = "";
+				var filter;
 
 				function input() {
+					filter = "";
 					trail = document.getElementById('trail').value;
 					course = document.getElementById('course').value;
 					difficulty = $("input[type=radio][name=difficulty]:checked").val();
@@ -73,12 +74,14 @@
 
 					/*&filter=lnk_nam=[object HTMLInputElement]&filter=cos_nam=[object HTMLInputElement]&filter=len_time:<:[object HTMLInputElement]*/
 
-					filter += "&filter=lnk_nam=" + trail;
-					filter += "&filter=cos_nam=" + course;
-					filter += "&filter=len_time:<:" + time;
+					if (trail != "")
+						filter += "&filter=lnk_nam=" + trail;
+					if (course != "")
+						filter += "&filter=cos_nam=" + course;
 					if (difficulty != null) {
 						filter += "&filter=cos_lvl:=:" + difficulty
 					};
+					filter += "&filter=len_time:<:" + time;
 
 					console.log(filter);
 
@@ -97,6 +100,36 @@
 					// 	}
 					// 	// filter += "&geometry=POINT(" + x + " " + y + ")";
 					// }
+
+					var circle; //global variable, consider adding it to map instead of window
+
+				$(function() {
+					circle = new google.maps.Circle({
+						strokeColor: "#FF0000",
+						strokeOpacity: 0.8,
+						strokeWeight: 2,
+						fillColor: "#FF0000",
+						fillOpacity: 0.3,
+						map: map,
+						center: map.center,
+						radius: 300000
+					});
+					circle.bindTo('center', map.center, 'position');
+					$('.range-slider').slider({
+						orientation: "horizontal",
+						range: "min",
+						max: 10000,
+						min: 500,
+						value: 500,
+						slide: function(event, u) {
+							updateRadius(circle, ui.value);
+						}
+					});
+				});
+
+				function updateRadius(circle, rad){
+					circle.setRadius(rad);
+				}
 
 				}
 			</script>
@@ -130,23 +163,7 @@
 						mapTypeId: google.maps.MapTypeId.roadmap
 					});
 					infoWindow = new google.maps.InfoWindow;
-
-					var circleOptions = new google.maps.Circle({
-						strokeColor: "FF0000",
-						strokeOpacity: 0.8,
-						strokeWeight: 2,
-						fillColor: "#FF0000",
-						fillOpacity: 0.3,
-						map: map,
-						center: map.center,
-						radius: 300000
-					});
-					//    			slider-range.addEventListener('input', circleOptions.radius, false);
-					//    			slider-range.addEventListener('input', circleOptions.radius, false);
-					circleOptions.radius = $('slider-range').val();
-
-					//   		google.maps.event.addDomListener(window, 'load', initMap);
-
+					
 					// Try HTML5 geolocation.
 					if (navigator.geolocation) {
 						navigator.geolocation.getCurrentPosition(function(position) {
@@ -175,10 +192,58 @@
 						'Error: Your browser doesn\'t support geolocation.');
 					infoWindow.open(map);
 				}
-			</script>
-			</div>
 
-			<div class="input" id="hikeinput">
+				
+
+/*				function drawCircle() {
+					var circleOptions = new google.maps.Circle({
+						strokeColor: "FF0000",
+						strokeOpacity: 0.8,
+						strokeWeight: 2,
+						fillColor: "#FF0000",
+						fillOpacity: 0.3,
+						map: map,
+						center: map.center,
+						radius: 300000
+					});
+				}
+				drawCircle(); //circleOptions.setMap(null);
+
+				var changeCircle = function() {
+					var slider = $('.range-slider'),
+					range = $('.slider-range'),
+					value = $('.slider-value'),
+					circleRadius = $('.distance');
+
+					slider.each(function() {
+						value.each(function() {
+							var value = $(this).prev().attr('value');
+							circleOptions.setRadius(parseInt(circleRadius));
+						})
+					}
+				)}*/
+/*						range.on('input', function() {
+							$(this).next(value).
+						})
+					})
+
+					var rangeSlider = function() {
+					var slider = $('.range-slider'),
+						range = $('.slider-range'),
+						value = $('.slider-value');
+
+					slider.each(function() {
+						value.each(function() {
+							var value = $(this).prev().attr('value');
+							$(this).html(value);
+						});
+						range.on('input', function() {
+							$(this).next(value).html(this.value);
+						});
+					});
+				};
+				rangeSlider();*/
+			</script>
 			</div>
 
 			<div class="output" id=result>

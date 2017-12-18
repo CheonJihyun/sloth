@@ -1,9 +1,6 @@
-#main {
-	background-color : brown;
-}
-
-#map {
-	height: 350px;
+@font-face {
+	font-family : Oregano-Regular;
+	src : url(Oregano-Regular.ttf);
 }
 
 *, *:before, *:after {
@@ -11,7 +8,7 @@
 }
 
 body {
-	font-family : sans-serif;
+	font-family : Oregano-Regular;
 	padding: 60px 20px;
 }
 @media (min-width: 600px) {
@@ -20,14 +17,16 @@ body {
   }
 }
 
+/* title style */
 .title {
 	padding-bottom : 3px;
 }
 
-.title p {
+.title pre {
 	text-align : center;
 }
 
+/* menu list style */
 .menu_list, .category_list {
 	list-style-type : none;
 	text-align : center;
@@ -44,10 +43,34 @@ body {
 	color : DarkGray;
 }
 
+/* selection form style */
+.walk_form {
+	height : 600px;
+}
+
 .walk_form p {
+	text-align : center;
+	font-size : 2em;
+	top : 50%;
+	left : 50%;
+}
+
+.level_div p {
 	text-align : center;
 }
 
+.level_div img {
+	height : 40px;
+	width : auto;
+}
+
+/* selection form div background */
+#lnk_nam {
+	background-color : brown;
+	opacity : 0.25;
+}
+
+/* time, distance slider style */
 .range-slider {
 	margin: 60px 0 0 0%;
 	width: 100%;
@@ -55,6 +78,7 @@ body {
 
 .range-slider p {
 	text-align: center;
+	font-size : 1em;
 }
 
 .slider-range {
@@ -105,4 +129,8 @@ body {
 	border-right: 7px solid #2c3e50;
 	border-bottom: 7px solid transparent;
 	content: "";
+}
+
+#map {
+	height: 350px;
 }
