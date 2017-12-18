@@ -44,12 +44,6 @@ body {
 	color : DarkGray;
 }
 
-.category_list li {
-	display : inline;
-	padding-right : 15px;
-	font-size : 1em;
-}
-
 .walk_form p {
 	text-align : center;
 }

@@ -9,7 +9,7 @@
 </head>
 
 <body class="main">
-	<div id="question1">
+<!--	<div id="question1">
 		<p class="question">Q1. How old are you?</p>
 		<div class="answer-image">
 			<p><img src="" alt="~19"></p>
@@ -21,21 +21,21 @@
 <!--			<li>Over 20</li>
 			</ul>
 		</div>
--->	</div>
+	</div>-->
 
-	<div id="question2">
+<!--	<div id="question2">
 		<p class="question">Q2. How do you feel?</p>
 		<div class="answer-image">
 			<p><img src="" alt="excited"></p> <!--신남 : far distance, midium~high difficulty-->
-			<p><img src="" alt="calm"></p><!--고요 : low~medium difficulty, long time-->
-			<p><img src="" alt="loved"></p> <!--사랑 : low difficulty, short time-->
-			<p><img src="" alt="anxious"></p> <!--불안 : low difficulty, near distance-->
-			<p><img src="" alt="tired"></p> <!--피곤 : near distance, low difficulty-->
-			<p><img src="" alt="frustrated"></p> <!--좌절 : far distance, low difficulty-->
-			<p><img src="" alt="irritated"></p> <!--화남 : far distance, short time-->
+<!--			<p><img src="" alt="calm"></p> 고요 : low~medium difficulty, long time
+			<p><img src="" alt="loved"></p> 사랑 : low difficulty, short time
+			<p><img src="" alt="anxious"></p> 불안 : low difficulty, near distance
+			<p><img src="" alt="tired"></p> 피곤 : near distance, low difficulty
+			<p><img src="" alt="frustrated"></p> 좌절 : far distance, low difficulty
+			<p><img src="" alt="irritated"></p> 화남 : far distance, short time
 			<!--short time : ~3hours, long time : 3hours and more-->
 			<!--adult - far distance : 150km~, teen - far distance : 40~200km-->
-		</div><!--
+<!--		</div>
 		<div class="answer-text">
 			<ul id="answer2">
 				<li>Excited</li>
@@ -47,24 +47,24 @@
 				<li>Frustrated</li>
 				<li>Irritated</li>
 			</ul>
-		</div>-->
-	</div>
+		</div>
+	</div>-->
 
-	<div id="question3">
+<!--	<div id="question3">
 		<p class="question">Q3. Choose what you want</p>
 		<div class="answer-image">
 			<p><img src="" alt="walk"></p>
 			<p><img src="" alt="hike"></p>
-		</div><!--
+		</div>
 		<div class="answer-text">
 			<ul id="answer3">
 				<li>Walk</li>
 				<li>Hike</li>
 			</ul>
-		</div>-->
-	</div>
+		</div>
+	</div>-->
 
-	<div id="question4">
+<!--	<div id="question4">
 		<p class="question">Q4. What transportation are you going to use?</p>
 		<div class="answer-image">
 			<p><img src="" alt="subway"></p>
@@ -72,7 +72,7 @@
 			<p><img src="" alt="car"></p>
 			<p><img src="" alt="train"></p>
 			<p><img src="" alt="plane"></p>
-		</div><!--
+		</div>
 		<div class="answer-text">
 			<ul id="answer4">
 				<li>Subway</li>
@@ -81,17 +81,17 @@
 				<li>Train</li>
 				<li>Plane</li><!--w/oplane : ~350km--><!--
 			</ul>
-		</div>-->
-	</div>
+		</div>
+	</div>-->
 
-	<div id="question5">
+<!--	<div id="question5">
 		<p class="question">Q5. How much time can you spare?</p>
 		<div class="answer-image">
 			<p><img src="" alt="less_than_3"></p>
 			<p><img src="" alt="3_to_6"></p>
 			<p><img src="" alt="6_to_a_day"></p>
 			<p><img src="" alt="more_than_a_day"></p>
-		</div><!--
+		</div>
 		<div class="answer-text">
 			<ul id="answer5">
 				<li>Less than 3 hours</li><!--w/car : ~100km, w/ocar : ~30km-->
@@ -103,38 +103,68 @@
 	</div>
 
 	</div>
-<!--	<div class="submit">
-		<form action="php/action_page.php" target="_self">
-			<input type="submit" value="Submit">
-		</form>
-	</div>-->
 
 	<div class="form">
 		<form action="\action_recommend.php" target="_self">
-			<input type="radio" name="age" value="child"> Below 20 
-			<input type="radio" name="age" value="adult"> Over 20<br><br>
+			<div id="question1">
+				<p class="question">Q1. How old are you?</p>
+				<div class="answer-image">
+					<p><img src="" alt="~19"></p>
+					<p><img src="" alt="20~"></p>
+				</div>
+				<input type="radio" name="age" value="child"> Below 20 
+				<input type="radio" name="age" value="adult"> Over 20<br><br>
+			</div>
 
-			<input type="radio" name="feeling" value="excited"> Excited 
-			<input type="radio" name="feeling" value="calm"> Calm 
-			<input type="radio" name="feeling" value="loved"> Loved<br>
-			<input type="radio" name="feeling" value="anxious">Anxious 
-			<input type="radio" name="feeling" value="tired"> Tired 
-			<input type="radio" name="feeling" value="frustrated"> Frustrated 
-			<input type="radio" name="feeling" value="irritated"> Irritated<br><br>
+			<div id="question2">
+				<p class="question">Q2. How do you feel?</p>
+				<div class="answer-image">
+					<p><img src="" alt="excited"></p>
+					<p><img src="" alt="calm"></p>
+					<p><img src="" alt="loved"></p>
+					<p><img src="" alt="anxious"></p>
+					<p><img src="" alt="tired"></p>
+					<p><img src="" alt="frustrated"></p>
+					<p><img src="" alt="irritated"></p>
+				</div>
+				<input type="radio" name="feeling" value="excited"> Excited 
+				<input type="radio" name="feeling" value="calm"> Calm 
+				<input type="radio" name="feeling" value="loved"> Loved<br>
+				<input type="radio" name="feeling" value="anxious">Anxious 
+				<input type="radio" name="feeling" value="tired"> Tired 
+				<input type="radio" name="feeling" value="frustrated"> Frustrated 
+				<input type="radio" name="feeling" value="irritated"> Irritated<br><br>
+			</div>
 
-			<input type="radio" name="want" value="walk"> Walk 
-			<input type="radio" name="want" value="hike"> Hike<br><br>
+			<div id="question4">
+				<p class="question">Q4. What transportation are you going to use?</p>
+				<div class="answer-image">
+					<p><img src="" alt="subway"></p>
+					<p><img src="" alt="bus"></p>
+					<p><img src="" alt="car"></p>
+					<p><img src="" alt="train"></p>
+					<p><img src="" alt="plane"></p>
+				</div>
+				<input type="checkbox" name="transportation" value="subway"> Subway 
+				<input type="checkbox" name="transportation" value="bus"> Bus 
+				<input type="checkbox" name="transportation" value="car"> Car 
+				<input type="checkbox" name="transportation" value="train"> Train 
+				<input type="checkbox" name="transportation" value="airplane"> Airplane<br><br>
+			</div>
 
-			<input type="checkbox" name="transportation" value="subway"> Subway 
-			<input type="checkbox" name="transportation" value="bus"> Bus 
-			<input type="checkbox" name="transportation" value="car"> Car 
-			<input type="checkbox" name="transportation" value="train"> Train 
-			<input type="checkbox" name="transportation" value="airplane"> Airplane<br><br>
-
-			<input type="radio" name="time" value="less3"> Less than 3 hours<br>
-			<input type="radio" name="time" value="3to6"> More than 3 hours, less than 6 hours<br>
-			<input type="radio" name="time" value="6today"> More than 6 hours, less than a day<br>
-			<input type="radio" name="time" value="moreday"> More than a day<br><br>
+			<div id="question5">
+				<p class="question">Q5. How much time can you spare?</p>
+				<div class="answer-image">
+					<p><img src="" alt="less_than_3"></p>
+					<p><img src="" alt="3_to_6"></p>
+					<p><img src="" alt="6_to_a_day"></p>
+					<p><img src="" alt="more_than_a_day"></p>
+				</div>
+				<input type="radio" name="time" value="less3"> Less than 3 hours<br>
+				<input type="radio" name="time" value="3to6"> More than 3 hours, less than 6 hours<br>
+				<input type="radio" name="time" value="6today"> More than 6 hours, less than a day<br>
+				<input type="radio" name="time" value="moreday"> More than a day<br><br>
+			</div>
 
 			<input type="submit" value="Submit">
 		</form>

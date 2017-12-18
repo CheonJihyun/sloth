@@ -11,7 +11,7 @@
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2LWPm4NAkrHM43Si-C7PVOkQg4FSqrZ8&callback=initMap"></script>
 </head>
 
-<body class="search">
+<body class="search" onload="input();">
 	<div class="title">
 		<p><a href="index.html"><img src="images/title.png" alt="S L O T H"></a></p>
 	</div>
@@ -20,12 +20,6 @@
 			<li><a href="recommend.html">RECOMMEND</a></li>
 			<li><a href="search.html">SEARCH</a></li>
 			<li><a href="photolog.html">PHOTOLOG</a></li>
-		</ul>
-	</div>
-	<div class="category">
-		<ul class="category_list">
-			<li>WALK</li>
-			<li>HIKE</li>
 		</ul>
 	</div>
 	<div class="input" id="walkinput">
@@ -85,7 +79,7 @@
 				if (difficulty != null) filter += "&filter=cos_lvl:=:" + difficulty;
 
 				alert(filter);
-				
+
 				var s = document.createElement("script");
 				s.src = "http://apis.vworld.kr/2ddata/trkroad/data?apiKey=4CAD59E8-4728-3099-8B24-F00FB406A8BD&domain=https://cheonjihyun.github.io/sloth/&output=json"+filter;
 				document.body.appendChild(s);
