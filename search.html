@@ -31,10 +31,10 @@
 	<div class="input" id="walkinput">
 		<form onsubmit="return input()"> <!--action="walk_search.php" method="get">-->
 			<div class="walk_form" id="lnk_nam">
-				<p>Name of Trail<br><br><input type="text" id="trail" name="trail"></p>
+				<p>Name of Trail<br><br><input id="trail" type="text" name="trail"></p>
 			</div>
 			<div class="walk_form" id="cos_nam">
-				<p>Name of Course<br><br><input type="text" id="course" name="course"></p>
+				<p>Name of Course<br><br><input id="course" type="text" name="course"></p>
 			</div>
 			<div class="walk_form" id="cos_lvl">
 				<p>Difficulty<br><br>
@@ -44,14 +44,14 @@
 			<div class="walk_form" id="len_time">
 				<p>Consuming Time<br></p>
 				<div class="range-slider"><p>
-					<input class="slider-range" type="range" id="time" name="time" min="0" max="24">
+					<input class="slider-range" id="time" type="range" name="time" min="0" max="24">
 					<span class="slider-value">12</span>
 				</p></div>
 			</div>
 			<div class="walk_form" id="distance">
 				<p>Distance from Current Position<br></p>
 				<div class="range-slider"><p>
-					<input class="slider-range" type="range" id="distance" name="distance" min="0" max="600000">
+					<input class="slider-range" id="distance" type="range" name="distance" min="0" max="600000">
 					<span class="slider-value">300000</span>
 				</p></div>
 				<div id="map"></div>
@@ -60,10 +60,10 @@
 
 		<script>
 			// forms에서 입력받은 데이터 가져오고 필터링하기
-			var difficulty, time, distance, filter = "";
+			var difficulty, time, distance;
+			var filter = "";
 			function input() {
 				if (this.readyState==4 && this.status==200) {
-//					var ;
 					filter += "&filter=lnk_nam=" + document.getElementById("trail").value;
 					filter += "&filter=cos_nam=" + document.getElementById("course").value;
 					var tempLevel = document.getElementByName("difficulty");
@@ -73,19 +73,13 @@
 						}
 					}
 					difficulty = $("input[type=radio][name=difficulty]:checked").val();
-					time = document.getElementById("time").value;
+					filter += "&filter=len_time:<:" + document.getElementById("time").value;
 					distance = document.getElementById("distance").value;
 				}
 
 /*&filter=lnk_nam=[object HTMLInputElement]&filter=cos_nam=[object HTMLInputElement]&filter=len_time:<:[object HTMLInputElement]*/
 
-				
-//				if (trail != null)
-//					filter += "&filter=lnk_nam=" + trail;
-//				if (course != "")
-//					filter += "&filter=cos_nam=" + course;
 				if (difficulty != null) filter += "&filter=cos_lvl:=:" + difficulty;
-				if (time != null) filter += "&filter=len_time:<:" + time;
 
 				alert(filter);
 				
@@ -146,7 +140,6 @@
 					map : map,
 					center : map.center,
 					radius : 300000
-					//document.getElementById("distance").value
 				});
 //    			slider-range.addEventListener('input', circleOptions.radius, false);
 //    			slider-range.addEventListener('input', circleOptions.radius, false);

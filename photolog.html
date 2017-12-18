@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8">
 	<title>SLOTH_photolog</title>
 	<link rel="stylesheet" type="text/css" href="style_photolog.css">
 </head>
@@ -16,7 +17,57 @@
 			<li>PHOTOLOG</li>
 		</ul>
 	</div>
-	<div class="">
+	<div class="mainboard">
+		<section>
+			<div class="slides">
+				<img class="slidesImage" id="slidesImage1" src="images/jejuolle.jpg">
+				<h2 class="slidesTitle">가족과의 여행</h2>
+				<h4 class="slidesSub">제주 올레길</h4>
+			</div>
+			<div class="slides">
+				<img class="slidesImage" src="images/haeparang.jpg">
+				<h2 class="slidesTitle">바다를 보러</h2>
+				<h4 class="slidesSub">동해안 해파랑길</h4>
+			</div>
+			<div class="slides">
+				<img class="slidesImage" src="images/jiridulle.jpg">
+				<h2 class="slidesTitle">신선한 산공기</h2>
+				<h4 class="slidesSub">지리산 둘레길</h4>
+			</div>
+		</section>
+
+		<script>
+			var index = 0;
+			carousel();
+
+			function carousel() {
+				var x = document.getElementsByClassName("slides");
+				for (var i=0 ; i<x.length ; i++) {
+					x[i].style.display = "none";
+				}
+				index++;
+				if (index > x.length) { index = 1 }
+				x[index-1].style.display = "block";
+				setTimeout(carousel, 3000);
+			}
+		</script>
+
+		<script>
+			var div = document.getElementsByClassName("slides");
+			var img = document.getElementsByClassName("slidesImage");
+			var divAspect = ($(window).height()*0.8) / ($(window).width()*0.47);
+			var imgAspect = img.height / img.width;
+
+			if (imgAspect <= divAspect) {
+			// 이미지가 div보다 납작한 경우 세로를 div에 맞추고 가로는 잘라낸다
+			var imgWidthActual = div.offsetHeight / imgAspect;
+			var imgWidthToBe = div.offsetHeight / divAspect;
+			var marginLeft = -Math.round((imgWidthActual - imgWidthToBe) / 2);
+			img.style.cssText = 'width: auto; height: 100%; margin-left: ' + marginLeft + 'px;'
+			} else {
+			// 이미지가 div보다 길쭉한 경우 가로를 div에 맞추고 세로를 잘라낸다
+			img.style.cssText = 'width: 100%; height: auto; margin-left: 0;';
+		</script>
 	</div>
 	<div class="board">
 	</div>
