@@ -179,10 +179,20 @@
 	function update() {
 		var newRad = parseInt(document.getElementById('distance').value);
 		updateRadius(circle, newRad);
+		editZoom();
 	}
 
 	function updateRadius(circle, rad){
 		circle.setRadius(rad);
+	}
+
+	function editZoom() {
+		var newRad = parseInt(document.getElementById('distance').value);
+		if (newRad <= 50000) { map.setZoom(9); }
+		else if (newRad > 50000 && newRad<=100000) { map.setZoom(8); }
+		else if (newRad > 100000 && newRad<=200000) { map.setZoom(7); }
+		else if (newRad > 200000 && newRad<=300000) { map.setZoom(6); }
+		else { map.setZoom(5); }
 	}
 
 	function changeScene() {
