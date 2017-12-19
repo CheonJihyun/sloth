@@ -55,6 +55,7 @@
 				</div>
 				<div id="map"></div>
 				<br>
+				<p><a onclick="update();">Update</a></p>
 				<p><a onclick="input();">Submit</a></p>
 				<p><input type="submit" value="Submit"></p><br>
 			</form>
@@ -77,10 +78,10 @@
 					if (navigator.geolocation) {
 						navigator.geolocation.getCurrentPosition(function(position) {
 							var cal = {
-								minx: position.coords.longitude - distance,
-								miny: position.coords.latitude - distance,
-								maxx : position.coords.longitude + distance,
-								mixy: position.coords.latitude + distance,
+								minx: parseInt(position.coords.longitude - distance),
+								miny: parseInt(position.coords.latitude - distance),
+								maxx : parseInt(position.coords.longitude + distance),
+								mixy: parseInt(position.coords.latitude + distance),
 							}
 						})
 						filter += "&geometry=BBOX(" + minx + ", " + miny + ", " + maxx + ", " + maxy + ")";
@@ -100,38 +101,21 @@
 				var s = document.createElement("script");
 				s.src = "http://apis.vworld.kr/2ddata/trkroad/data?apiKey=4CAD59E8-4728-3099-8B24-F00FB406A8BD&domain=https://cheonjihyun.github.io/sloth/&output=json" + filter;
 				document.body.appendChild(s);
+			}
 
-
-
-				var circle; //global variable, consider adding it to map instead of window
-				$(function() {
-					circle = new google.maps.Circle({
-						strokeColor: "#FF0000",
-						strokeOpacity: 0.8,
-						strokeWeight: 2,
-						fillColor: "#FF0000",
-						fillOpacity: 0.3,
-						map: map,
-						center: map.center,
-						radius: 300000
-					});
-					circle.bindTo('center', map.center, 'position');
-					$('.range-slider').slider({
-						orientation: "horizontal",
-						range: "min",
-						max: 10000,
-						min: 500,
-						value: 500,
-						slide: function(event, u) {
-							updateRadius(circle, ui.value);
-						}
-					});
-				});
-
-				function updateRadius(circle, rad){
-					circle.setRadius(rad);
+			function LatLngXY() {
+				var strLatLon = $.trim($("#taLatLon").val());
+				var lines = strLatLon.split(String.fromCharCode(10)); //줄단위로 분할
+				var strX = "", strY = "";
+				for(var i = 0, len = lines.length; i < len; i++) {
+					if(lines[i] == "") continue; //빈줄은 무시하고 통과
+					var latlon = lines[i].split(",");
+					var lat = latlon[0], lon = latlon[1];
+					var xy = dfs_xy_conv("toXY", lat, lon);
+					strX += xy.x;
+					strY += xy.y;
 				}
-
+				$('#taXY').val(strXY);
 			}
 			</script>
 
@@ -155,8 +139,7 @@
 			rangeSlider();
 
 			// google map api 불러와서 지도 그리고 distance 입력값에 따라 원그리기
-			var map, infoWindow;
-
+			var map, infoWindow, circle;
 			function initMap() {
 				map = new google.maps.Map(document.getElementById("map"), {
 					center: new google.maps.LatLng(33.450701, 126.570667),
@@ -184,6 +167,19 @@
 					// Browser doesn't support Geolocation
 					handleLocationError(false, infoWindow, map.getCenter());
 				}
+				function drawCircle() {
+					circle = new google.maps.Circle({
+						strokeColor: "FF0000",
+						strokeOpacity: 0.8,
+						strokeWeight: 2,
+						fillColor: "#FF0000",
+						fillOpacity: 0.3,
+						map: map,
+						center: map.center,
+						radius: 300000
+					});
+				}
+				drawCircle();
 			}
 
 			function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -194,37 +190,30 @@
 					infoWindow.open(map);
 				}
 
+				function update() {
+					var newRad = parseInt(document.getElementById('distance').value);
+					updateRadius(circle, newRad);
+				}
 
+				function updateRadius(circle, rad){
+					circle.setRadius(rad);
+				}
 
-				/*				function drawCircle() {
-				var circleOptions = new google.maps.Circle({
-				strokeColor: "FF0000",
-				strokeOpacity: 0.8,
-				strokeWeight: 2,
-				fillColor: "#FF0000",
-				fillOpacity: 0.3,
-				map: map,
-				center: map.center,
-				radius: 300000
-			});
+				/* var changeCircle = function() {
+				var slider = $('.range-slider'),
+				range = $('.slider-range'),
+				value = $('.slider-value'),
+				circleRadius = $('.distance');
+
+				slider.each(function() {
+				value.each(function() {
+				var value = $(this).prev().attr('value');
+				circleOptions.setRadius(parseInt(circleRadius));
+			})
 		}
-		drawCircle(); //circleOptions.setMap(null);
-
-		var changeCircle = function() {
-		var slider = $('.range-slider'),
-		range = $('.slider-range'),
-		value = $('.slider-value'),
-		circleRadius = $('.distance');
-
-		slider.each(function() {
-		value.each(function() {
-		var value = $(this).prev().attr('value');
-		circleOptions.setRadius(parseInt(circleRadius));
-	})
-}
-)}*/
-/*						range.on('input', function() {
-$(this).next(value).
+	)}*/
+	/*						range.on('input', function() {
+	$(this).next(value).
 })
 })
 
@@ -243,7 +232,39 @@ $(this).next(value).html(this.value);
 });
 });
 };
-rangeSlider();*/
+rangeSlider();
+
+
+
+
+var circle; //global variable, consider adding it to map instead of window
+$(function() {
+circle = new google.maps.Circle({
+strokeColor: "#FF0000",
+strokeOpacity: 0.8,
+strokeWeight: 2,
+fillColor: "#FF0000",
+fillOpacity: 0.3,
+map: map,
+center: map.center,
+radius: 300000
+});
+circle.bindTo('center', map.center, 'position');
+$('.range-slider').slider({
+orientation: "horizontal",
+range: "min",
+max: 10000,
+min: 500,
+value: 500,
+slide: function(event, u) {
+updateRadius(circle, ui.value);
+}
+});
+});
+
+function updateRadius(circle, rad){
+circle.setRadius(rad);
+}*/
 </script>
 </div>
 
