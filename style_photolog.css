@@ -1,12 +1,24 @@
-.body {
-/*	overflow : hidden;*/
+@font-face {
+	font-family : Oregano-Regular;
+	src : url(Oregano-Regular.ttf);
+}
+
+body {
+	font-family : Oregano-Regular;
+	padding: 60px 20px;
+	overflow : hidden;
+}
+@media (min-width: 600px) {
+	body {
+		padding: 60px;
+  }
 }
 
 .title {
 	padding-bottom : 3px;
 }
 
-.title p {
+.title pre {
 	text-align : center;
 }
 

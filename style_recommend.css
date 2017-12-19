@@ -1,0 +1,52 @@
+@font-face {
+	font-family : Oregano-Regular;
+	src : url(Oregano-Regular.ttf);
+}
+
+body {
+	font-family : Oregano-Regular;
+	padding: 60px 20px;
+}
+@media (min-width: 600px) {
+	body {
+		padding: 60px;
+  }
+}
+
+/* title style */
+.title {
+	padding-bottom : 3px;
+}
+
+.title pre {
+	text-align : center;
+}
+
+/* menu list style */
+.menu_list, .category_list {
+	list-style-type : none;
+	text-align : center;
+}
+
+.menu_list li {
+	display : inline;
+	padding-right : 15px;
+	font-size : 1em;
+}
+
+.menu_list a {
+	text-decoration : none;
+	color : DarkGray;
+}
+
+/* selection form style */
+.question-form {
+	height : 600px;
+}
+
+.question-form p {
+	text-align : center;
+	font-size : 2em;
+	top : 50%;
+	left : 50%;
+}

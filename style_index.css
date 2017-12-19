@@ -1,11 +1,10 @@
 @font-face {
-	font-family : ;
-	src : url(.ttf);
+	font-family : Oregano-Regular;
+	src : url(Oregano-Regular.ttf);
 }
 
 .main {
 	background-color : white;
-/*	font-family : ;*/
 	overflow : hidden;
 }
 
@@ -16,6 +15,7 @@
 
 .title {
 	position : relative;
+	font-family : sans-serif;
 	animation-name : title;
 	animation-duration : 4s;
 	animation-delay : 1.5s;
@@ -24,7 +24,7 @@
 
 .title p {
 	color : white;
-	font-size : 6em;
+	font-size : 5.2em;
 	text-align : center;
 }
 
@@ -43,6 +43,7 @@
 }
 
 .recommendation {
+	font-family : Oregano-Regular;
 	animation-name : recommendation;
 	animation-duration : 5s;
 	animation-delay : 2s;

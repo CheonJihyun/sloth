@@ -4,11 +4,12 @@
 	<meta charset="UTF-8">
 	<title>SLOTH_photolog</title>
 	<link rel="stylesheet" type="text/css" href="style_photolog.css">
+	<script src="http://code.jquery.com/jquery-1.5.js"></script>
 </head>
 
 <body>
 	<div class="title">
-		<p><img src="images/title.png" alt="S L O T H"></p>
+		<pre>  <a href="index.html"><img src="images/title.png" alt="S L O T H"></a></pre>
 	</div>
 	<div class="menu">
 		<ul class="menu_list">
@@ -55,7 +56,7 @@
 		<script>
 			var div = document.getElementsByClassName("slides");
 			var img = document.getElementsByClassName("slidesImage");
-			var divAspect = ($(window).height()*0.8) / ($(window).width()*0.47);
+			var divAspect = ($(div).height()*0.8) / ($(div).width()*0.47);
 			var imgAspect = img.height / img.width;
 
 			if (imgAspect <= divAspect) {
@@ -67,6 +68,7 @@
 			} else {
 			// 이미지가 div보다 길쭉한 경우 가로를 div에 맞추고 세로를 잘라낸다
 			img.style.cssText = 'width: 100%; height: auto; margin-left: 0;';
+		}
 		</script>
 	</div>
 	<div class="board">

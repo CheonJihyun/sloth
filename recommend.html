@@ -9,114 +9,29 @@
 </head>
 
 <body class="main">
-<!--	<div id="question1">
-		<p class="question">Q1. How old are you?</p>
-		<div class="answer-image">
-			<p><img src="" alt="~19"></p>
-			<p><img src="" alt="20~"></p>
-		</div><!--
-		<div class="answer-text">
-			<ul id="answer1">
-				<li>Below 20</li> <!--near distance, short time-->
-<!--			<li>Over 20</li>
-			</ul>
-		</div>
-	</div>-->
-
-<!--	<div id="question2">
-		<p class="question">Q2. How do you feel?</p>
-		<div class="answer-image">
-			<p><img src="" alt="excited"></p> <!--신남 : far distance, midium~high difficulty-->
-<!--			<p><img src="" alt="calm"></p> 고요 : low~medium difficulty, long time
-			<p><img src="" alt="loved"></p> 사랑 : low difficulty, short time
-			<p><img src="" alt="anxious"></p> 불안 : low difficulty, near distance
-			<p><img src="" alt="tired"></p> 피곤 : near distance, low difficulty
-			<p><img src="" alt="frustrated"></p> 좌절 : far distance, low difficulty
-			<p><img src="" alt="irritated"></p> 화남 : far distance, short time
-			<!--short time : ~3hours, long time : 3hours and more-->
-			<!--adult - far distance : 150km~, teen - far distance : 40~200km-->
-<!--		</div>
-		<div class="answer-text">
-			<ul id="answer2">
-				<li>Excited</li>
-				<li>Calm</li>
-				<li>Loved</li>
-
-				<li>Anxious</li>
-				<li>Tired</li>
-				<li>Frustrated</li>
-				<li>Irritated</li>
-			</ul>
-		</div>
-	</div>-->
-
-<!--	<div id="question3">
-		<p class="question">Q3. Choose what you want</p>
-		<div class="answer-image">
-			<p><img src="" alt="walk"></p>
-			<p><img src="" alt="hike"></p>
-		</div>
-		<div class="answer-text">
-			<ul id="answer3">
-				<li>Walk</li>
-				<li>Hike</li>
-			</ul>
-		</div>
-	</div>-->
-
-<!--	<div id="question4">
-		<p class="question">Q4. What transportation are you going to use?</p>
-		<div class="answer-image">
-			<p><img src="" alt="subway"></p>
-			<p><img src="" alt="bus"></p>
-			<p><img src="" alt="car"></p>
-			<p><img src="" alt="train"></p>
-			<p><img src="" alt="plane"></p>
-		</div>
-		<div class="answer-text">
-			<ul id="answer4">
-				<li>Subway</li>
-				<li>Bus</li>
-				<li>Car</li>
-				<li>Train</li>
-				<li>Plane</li><!--w/oplane : ~350km--><!--
-			</ul>
-		</div>
-	</div>-->
-
-<!--	<div id="question5">
-		<p class="question">Q5. How much time can you spare?</p>
-		<div class="answer-image">
-			<p><img src="" alt="less_than_3"></p>
-			<p><img src="" alt="3_to_6"></p>
-			<p><img src="" alt="6_to_a_day"></p>
-			<p><img src="" alt="more_than_a_day"></p>
-		</div>
-		<div class="answer-text">
-			<ul id="answer5">
-				<li>Less than 3 hours</li><!--w/car : ~100km, w/ocar : ~30km-->
-<!--				<li>More than 3 hours, less than 6 hours</li><!--w/car : ~150km, w/ocar : ~60km-->
-<!--				<li>More than 6 hours, less than a day</li><!--w/car : ~200km, w/ocar : ~100km-->
-<!--				<li>More than a day</li><!--w/car : no limit, w/ocar : no limit-->
-<!--			</ul>
-		</div>-->
+	<div class="title">
+		<pre>  <a href="index.html"><img src="images/title.png" alt="S L O T H"></a></pre>
 	</div>
-
+	<div class="menu">
+		<ul class="menu_list">
+			<li><a href="recommend.html">RECOMMEND</a></li>
+			<li><a href="search.html">SEARCH</a></li>
+			<li><a href="photolog.html">PHOTOLOG</a></li>
+		</ul>
 	</div>
-
 	<div class="form">
 		<form action="\action_recommend.php" target="_self">
-			<div id="question1">
+			<div class="question-form" id="question1">
 				<p class="question">Q1. How old are you?</p>
 				<div class="answer-image">
-					<p><img src="" alt="~19"></p>
+					<p><img src="" alt="~19"></p>  <!--near distance, short time-->
 					<p><img src="" alt="20~"></p>
 				</div>
-				<input type="radio" name="age" value="child"> Below 20 
+				<input type="radio" name="age" value="child"> Below 20
 				<input type="radio" name="age" value="adult"> Over 20<br><br>
 			</div>
 
-			<div id="question2">
+			<div class="question-form" id="question2">
 				<p class="question">Q2. How do you feel?</p>
 				<div class="answer-image">
 					<p><img src="" alt="excited"></p>
@@ -126,39 +41,52 @@
 					<p><img src="" alt="tired"></p>
 					<p><img src="" alt="frustrated"></p>
 					<p><img src="" alt="irritated"></p>
+					<!--신남 : far distance, midium~high difficulty
+	       고요 : low~medium difficulty, long time
+				 사랑 : low difficulty, short time
+				 불안 : low difficulty, near distance
+				 피곤 : near distance, low difficulty
+				 좌절 : far distance, low difficulty
+				 화남 : far distance, short time
+				 short time : ~3hours, long time : 3hours and more
+				 adult - far distance : 150km~, teen - far distance : 40~200km-->
 				</div>
-				<input type="radio" name="feeling" value="excited"> Excited 
-				<input type="radio" name="feeling" value="calm"> Calm 
+				<input type="radio" name="feeling" value="excited"> Excited
+				<input type="radio" name="feeling" value="calm"> Calm
 				<input type="radio" name="feeling" value="loved"> Loved<br>
-				<input type="radio" name="feeling" value="anxious">Anxious 
-				<input type="radio" name="feeling" value="tired"> Tired 
-				<input type="radio" name="feeling" value="frustrated"> Frustrated 
+				<input type="radio" name="feeling" value="anxious">Anxious
+				<input type="radio" name="feeling" value="tired"> Tired
+				<input type="radio" name="feeling" value="frustrated"> Frustrated
 				<input type="radio" name="feeling" value="irritated"> Irritated<br><br>
 			</div>
 
-			<div id="question4">
-				<p class="question">Q4. What transportation are you going to use?</p>
+			<div class="question-form" id="question3">
+				<p class="question">Q3. What transportation are you going to use?</p>
 				<div class="answer-image">
 					<p><img src="" alt="subway"></p>
 					<p><img src="" alt="bus"></p>
 					<p><img src="" alt="car"></p>
 					<p><img src="" alt="train"></p>
-					<p><img src="" alt="plane"></p>
+					<p><img src="" alt="plane"></p> <!--w/oplane : ~350km-->
 				</div>
-				<input type="checkbox" name="transportation" value="subway"> Subway 
-				<input type="checkbox" name="transportation" value="bus"> Bus 
-				<input type="checkbox" name="transportation" value="car"> Car 
-				<input type="checkbox" name="transportation" value="train"> Train 
+				<input type="checkbox" name="transportation" value="subway"> Subway
+				<input type="checkbox" name="transportation" value="bus"> Bus
+				<input type="checkbox" name="transportation" value="car"> Car
+				<input type="checkbox" name="transportation" value="train"> Train
 				<input type="checkbox" name="transportation" value="airplane"> Airplane<br><br>
 			</div>
 
-			<div id="question5">
-				<p class="question">Q5. How much time can you spare?</p>
+			<div class="question-form" id="question4">
+				<p class="question">Q4. How much time can you spare?</p>
 				<div class="answer-image">
 					<p><img src="" alt="less_than_3"></p>
 					<p><img src="" alt="3_to_6"></p>
 					<p><img src="" alt="6_to_a_day"></p>
 					<p><img src="" alt="more_than_a_day"></p>
+					<!-- ~3 - w/car : ~100km, w/ocar : ~30km
+					3~6 - w/car : ~150km, w/ocar : ~60km
+					6~day w/car : ~200km, w/ocar : ~100km
+					day~ w/car : no limit, w/ocar : no limit-->
 				</div>
 				<input type="radio" name="time" value="less3"> Less than 3 hours<br>
 				<input type="radio" name="time" value="3to6"> More than 3 hours, less than 6 hours<br>
@@ -166,14 +94,24 @@
 				<input type="radio" name="time" value="moreday"> More than a day<br><br>
 			</div>
 
+			<p><a onclick="filterReply();">Submit</a></p>
 			<input type="submit" value="Submit">
 		</form>
 	</div>
+</div>
 	<script>
-		function insertReply(c) {
-			var choice; //walk of hike
-			var 
-
+		function filterReply() {
+			var age, feeling, transportation=[], time, filter="";
+			age = $("input[type=radio][name=age]:checked").val();
+			feeling = $("input[type=radio][name=feeling]:checked").val();
+			function getTrans() {
+				$("input[name=transportation]:checked").each(function(i) {
+					transportation.push($(this).val());
+				});
+			}
+			getTrans();
+			time = $("input[type=radio][name=time]:checked").val();
+			console.log(age + " " + feeling + " " + transportation + " " + time);
 		}
 	</script>
 	<div class="result">
