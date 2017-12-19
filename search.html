@@ -71,25 +71,26 @@
 	var filter;
 	function input() {
 	  filter = "";
-	  var minx, miny, maxx, maxy;
-	  if (distance != null) {
-	    if (navigator.geolocation) {
-	      navigator.geolocation.getCurrentPosition(function(position) {
-	        LatLngXY();
-	        minx = (parseInt(strX)-parseInt(distance)).toString(),
-	        miny = (parseInt(strY)-parseInt(distance)).toString(),
-	        maxx = (parseInt(strX)+parseInt(distance)).toString(),
-	        mixy = (parseInt(strY)+parseInt(distance)).toString()
-	      })
-	      filter += "&geometry=BBOX(" + minx + ", " + miny + ", " + maxx + ", " + maxy + ")";
-	    }
-	  }
+
 	  trail = document.getElementById('trail').value;
 	  course = document.getElementById('course').value;
 	  difficulty = $("input[type=radio][name=difficulty]:checked").val();
 	  time = document.getElementById('time').value;
 	  distance = document.getElementById('distance').value;
 
+		var minx, miny, maxx, maxy;
+		if (distance != null) {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(function(position) {
+					LatLngXY();
+					minx = (parseInt(strX)-parseInt(distance)).toString(),
+					miny = (parseInt(strY)-parseInt(distance)).toString(),
+					maxx = (parseInt(strX)+parseInt(distance)).toString(),
+					mixy = (parseInt(strY)+parseInt(distance)).toString()
+				})
+				//filter += "&geometry=BBOX(" + minx + ", " + miny + ", " + maxx + ", " + maxy + ")";
+			}
+		}
 	  if (trail != "")
 	  filter += "&filter=lnk_nam=" + trail;
 	  if (course != "")
@@ -98,7 +99,6 @@
 	    filter += "&filter=cos_lvl:=:" + difficulty
 	  };
 	  filter += "&filter=len_time:<:" + time;
-
 	  console.log(filter);
 
 	  var s = document.createElement("script");

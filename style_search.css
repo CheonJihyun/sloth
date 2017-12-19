@@ -45,7 +45,7 @@ body {
 
 /* selection form style */
 .walk_form {
-	height : 400px;
+	height : 300px;
 }
 
 .walk_form p {
@@ -55,8 +55,9 @@ body {
 	left : 50%;
 }
 
-#levelcolumn div {
-	column-count: 3;
+.level_div {
+	width : 30%
+	position : relative;
 }
 
 .level_div p {
@@ -69,10 +70,6 @@ body {
 }
 
 /* selection form div background */
-#lnk_nam {
-	background-color : brown;
-	opacity : 0.25;
-}
 
 /* time, distance slider style */
 .range-slider {
