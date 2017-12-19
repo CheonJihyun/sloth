@@ -24,25 +24,20 @@
 		<form action="\action_recommend.php" target="_self">
 			<div class="question-form" id="question1">
 				<p class="question">Q1. How old are you?</p>
-				<div class="answer-image">
-					<p><img src="images/child.png" alt="~19"></p>  <!--near distance, short time-->
-					<p><img src="images/man.png" alt="20~"></p>
-				</div>
-				<input type="radio" name="age" value="child"> Below 20
-				<input type="radio" name="age" value="adult"> Over 20<br><br>
+				<div class="age_div"><p><img src="images/child.png" alt="~19"><br><br><input type="radio" name="age" value="child">   Below 20</p></div>  <!--near distance, short time-->
+				<div class="age_div"><p><img src="images/man.png" alt="20~"><br><br><input type="radio" name="age" value="adult">   Over 20</p></div>
 			</div>
 
 			<div class="question-form" id="question2">
 				<p class="question">Q2. How do you feel?</p>
-				<div class="answer-image">
-					<p><img src="" alt="excited"></p>
-					<p><img src="" alt="calm"></p>
-					<p><img src="" alt="loved"></p>
-					<p><img src="" alt="anxious"></p>
-					<p><img src="" alt="tired"></p>
-					<p><img src="" alt="frustrated"></p>
-					<p><img src="" alt="irritated"></p>
-					<!--신남 : far distance, high difficulty
+				<div class="feeling_div1"><p><img src="images/excited.png" alt="excited"><br><br><input type="radio" name="feeling" value="excited">   Excited</p></div>
+				<div class="feeling_div1"><p><img src="images/calm.png" alt="calm"><br><br><input type="radio" name="feeling" value="calm">   Calm</p></div>
+				<div class="feeling_div1"><p><img src="images/loved.png" alt="loved"><br><br><input type="radio" name="feeling" value="loved">   Loved</p></div>
+				<div class="feeling_div2"><p><img src="images/anxious.png" alt="anxious"><br><br><input type="radio" name="feeling" value="anxious">   Anxious</p></div>
+				<div class="feeling_div2"><p><img src="images/tired.png" alt="tired"><br><br><input type="radio" name="feeling" value="tired">   Tired</p></div>
+				<div class="feeling_div2"><p><img src="images/frustrated.png" alt="frustrated"><br><br><input type="radio" name="feeling" value="frustrated">   Frustrated</p></div>
+				<div class="feeling_div2"><p><img src="images/irritated.png" alt="irritated"><br><br><input type="radio" name="feeling" value="irritated">   Irritated</p></div>
+				<!--신남 : far distance, high difficulty
 	       고요 : medium difficulty, long time
 				 사랑 : low difficulty, short time
 				 불안 : low difficulty, near distance
@@ -51,51 +46,31 @@
 				 화남 : far distance, short time
 				 short time : ~3hours, long time : 3hours and more
 				 adult - far distance : 150km~, teen - far distance : 40~200km-->
-				</div>
-				<input type="radio" name="feeling" value="excited"> Excited
-				<input type="radio" name="feeling" value="calm"> Calm
-				<input type="radio" name="feeling" value="loved"> Loved<br>
-				<input type="radio" name="feeling" value="anxious">Anxious
-				<input type="radio" name="feeling" value="tired"> Tired
-				<input type="radio" name="feeling" value="frustrated"> Frustrated
-				<input type="radio" name="feeling" value="irritated"> Irritated<br><br>
 			</div>
 
 			<div class="question-form" id="question3">
 				<p class="question">Q3. What transportation are you going to use?</p>
-				<div class="answer-image">
-					<p><img src="" alt="subway"></p>
-					<p><img src="" alt="bus"></p>
-					<p><img src="" alt="car"></p>
-					<p><img src="" alt="train"></p>
-					<p><img src="" alt="plane"></p> <!--w/oplane : ~350km-->
-				</div>
-				<input type="checkbox" name="transportation" value="subway"> Subway
-				<input type="checkbox" name="transportation" value="bus"> Bus
-				<input type="checkbox" name="transportation" value="car"> Car
-				<input type="checkbox" name="transportation" value="train"> Train
-				<input type="checkbox" name="transportation" value="airplane"> Airplane<br><br>
+				<div class="trans_div"><p><img src="images/subway.png" alt="subway"><br><br><input type="checkbox" name="transportation" value="subway">   Subway</p></div>
+				<div class="trans_div"><p><img src="images/bus.png" alt="bus"><br><br><input type="checkbox" name="transportation" value="bus">   Bus</p></div>
+				<div class="trans_div"><p><img src="images/car.png" alt="car"><br><br><input type="checkbox" name="transportation" value="car">   Car</p></div>
+				<div class="trans_div"><p><img src="images/train.png" alt="train"><br><br><input type="checkbox" name="transportation" value="train">   Train</p></div>
+				<div class="trans_div"><p><img src="images/plane.png" alt="plane"><br><br><input type="checkbox" name="transportation" value="airplane">   Airplane</p></div> <!--w/oplane : ~350km-->
 			</div>
 
 			<div class="question-form" id="question4">
 				<p class="question">Q4. How much time can you spare?</p>
-				<div class="answer-image">
-					<p><img src="" alt="less_than_3"></p>
-					<p><img src="" alt="3_to_6"></p>
-					<p><img src="" alt="6_to_a_day"></p>
-					<p><img src="" alt="more_than_a_day"></p>
-					<!-- ~3 - w/car : ~100km, w/ocar : ~30km
+				<div class="time_div"><p><img src="images/timericon_1.png" alt="less_than_3"><br><br><input type="radio" name="time" value="less3">   Less than 3 hours</p></div>
+				<div class="time_div"><p><img src="images/timericon_2.png" alt="3_to_6"><br><br><input type="radio" name="time" value="3to6">   More than 3 hours, less than 6 hours</p></div>
+				<div class="time_div"><p><img src="images/timericon_3.png" alt="6_to_a_day"><br><br><input type="radio" name="time" value="6today">   More than 6 hours, less than a day</p></div>
+				<div class="time_div"><p><img src="images/timericon_4.png" alt="less_tmore_than_a_dayhan_3"><br><br><input type="radio" name="time" value="moreday">   More than a day</p></div><br>
+				<!-- ~3 - w/car : ~100km, w/ocar : ~30km
 					3~6 - w/car : ~150km, w/ocar : ~60km
 					6~day w/car : ~200km, w/ocar : ~100km
 					day~ w/car : no limit, w/ocar : no limit-->
-				</div>
-				<input type="radio" name="time" value="less3"> Less than 3 hours<br>
-				<input type="radio" name="time" value="3to6"> More than 3 hours, less than 6 hours<br>
-				<input type="radio" name="time" value="6today"> More than 6 hours, less than a day<br>
-				<input type="radio" name="time" value="moreday"> More than a day<br><br>
-				<p><a onclick="filterReply();">Submit</a></p>
+					<p><a onclick="filterReply();">Submit</a></p>
 			</div>
-		</form>
+		</div>
+	</form>
 
 		<script>
 			function filterReply() {

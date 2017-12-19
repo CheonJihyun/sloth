@@ -41,7 +41,7 @@ body {
 
 /* selection form style */
 .question-form {
-	height : 400px;
+	height : 450px;
 }
 
 .question-form p {
@@ -49,4 +49,83 @@ body {
 	font-size : 2em;
 	top : 50%;
 	left : 50%;
+}
+
+/* age div */
+.age_div {
+	width : 50%;
+	float : left;
+}
+
+.age_div p {
+	text-align : center;
+	font-size : 1.2em;
+}
+
+.age_div img {
+	height : 80px;
+	width : auto;
+}
+
+/* feeling div */
+.feeling_div1 {
+	width : 33%;
+	float : left;
+}
+
+.feeling_div1 p {
+	text-align : center;
+	font-size : 1.2em;
+}
+
+.feeling_div1 img {
+	height : 80px;
+	width : auto;
+}
+
+.feeling_div2 {
+	width : 25%;
+	float : left;
+}
+
+.feeling_div2 p {
+	text-align : center;
+	font-size : 1.2em;
+}
+
+.feeling_div2 img {
+	height : 80px;
+	width : auto;
+}
+
+/* transportation div */
+.trans_div {
+	width : 20%;
+	float : left;
+}
+
+.trans_div p {
+	text-align : center;
+	font-size : 1.2em;
+}
+
+.trans_div img {
+	height : 80px;
+	width : auto;
+}
+
+/* time div */
+.time_div {
+	width : 25%;
+	float : left;
+}
+
+.time_div p {
+	text-align : center;
+	font-size : 1.2em;
+}
+
+.time_div img {
+	height : 80px;
+	width : auto;
 }

@@ -45,7 +45,7 @@ body {
 
 /* selection form style */
 .walk_form {
-	height : 300px;
+	height : 450px;
 }
 
 .walk_form p {
@@ -56,8 +56,8 @@ body {
 }
 
 .level_div {
-	width : 30%
-	position : relative;
+	width : 33%;
+	float : left;
 }
 
 .level_div p {
@@ -65,7 +65,7 @@ body {
 }
 
 .level_div img {
-	height : 40px;
+	height : 80px;
 	width : auto;
 }
 
