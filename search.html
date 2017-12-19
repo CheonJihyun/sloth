@@ -1,108 +1,109 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<title>SLOTH_search</title>
-		<meta name="viewport" content="initial-scale=1.0">
-		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="style_search.css">
-		<script src="http://code.jquery.com/jquery-1.5.js"></script>
-		<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2LWPm4NAkrHM43Si-C7PVOkQg4FSqrZ8&callback=initMap"></script>
-	</head>
+<head>
+	<title>SLOTH_search</title>
+	<meta name="viewport" content="initial-scale=1.0">
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style_search.css">
+	<script src="http://code.jquery.com/jquery-1.5.js"></script>
+	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2LWPm4NAkrHM43Si-C7PVOkQg4FSqrZ8&callback=initMap"></script>
+</head>
 
-	<body class="search">
-		<div class="title">
-			<pre>  <a href="index.html"><img src="images/title.png" alt="S L O T H"></a></pre>
-		</div>
-		<div class="menu">
-			<ul class="menu_list">
-				<li><a href="recommend.html">RECOMMEND</a></li>
-				<li><a href="search.html">SEARCH</a></li>
-				<li><a href="photolog.html">PHOTOLOG</a></li>
-			</ul>
-		</div>
-		<div class="input" id="walkinput">
-			<form>
-				<div class="walk_form" id="lnk_nam">
-					<p>Name of Trail<br><br><input id="trail" type="text" name="trail" size="40"></p>
+<body class="search">
+	<div class="title">
+		<pre>  <a href="index.html"><img src="images/title.png" alt="S L O T H"></a></pre>
+	</div>
+	<div class="menu">
+		<ul class="menu_list">
+			<li><a href="recommend.html">RECOMMEND</a></li>
+			<li><a href="search.html">SEARCH</a></li>
+			<li><a href="photolog.html">PHOTOLOG</a></li>
+		</ul>
+	</div>
+	<div class="input" id="walkinput">
+		<form>
+			<div class="walk_form" id="lnk_nam">
+				<p>Name of Trail<br><br><input id="trail" type="text" name="trail" size="40"></p>
+			</div>
+			<div class="walk_form" id="cos_nam">
+				<p>Name of Course<br><br><input id="course" type="text" name="course" size="40"></p>
+			</div>
+			<div class="walk_form" id="cos_lvl">
+				<p>Difficulty<br></p>
+				<div class="level_div"><p><img src="images/sport.png" alt="easy"><br><input type="radio" name="difficulty" value="하"></p></div>
+				<div class="level_div"><p><img src="images/sport.png" alt="medium"><br><input type="radio" name="difficulty" value="중"></p></div>
+				<div class="level_div"><p><img src="images/sport.png" alt="hard"><br><input type="radio" name="difficulty" value="상"></p></div><br>
+			</div>
+			<div class="walk_form" id="len_time">
+				<p>Consuming Time<br></p>
+				<div class="range-slider">
+					<p>
+						<input class="slider-range" id="time" type="range" name="time" min="0" max="24">
+						<span class="slider-value">12</span>
+					</p>
 				</div>
-				<div class="walk_form" id="cos_nam">
-					<p>Name of Course<br><br><input id="course" type="text" name="course" size="40"></p>
+			</div>
+			<div class="walk_form" id="pointCal">
+				<p>Distance from Current Position<br></p>
+				<div class="range-slider">
+					<p>
+						<input class="slider-range" id="distance" type="range" name="distance" min="0" max="600000">
+						<span class="slider-value">300000</span>
+					</p><br>
 				</div>
-				<div class="walk_form" id="cos_lvl">
-					<p>Difficulty<br></p>
-					<div class="level_div"><p><img src="images/sport.png" alt="easy"><br><input type="radio" name="difficulty" value="하"></p></div>
-					<div class="level_div"><p><img src="images/sport.png" alt="medium"><br><input type="radio" name="difficulty" value="중"></p></div>
-					<div class="level_div"><p><img src="images/sport.png" alt="hard"><br><input type="radio" name="difficulty" value="상"></p></div><br>
-				</div>
-				<div class="walk_form" id="len_time">
-					<p>Consuming Time<br></p>
-					<div class="range-slider">
-						<p>
-							<input class="slider-range" id="time" type="range" name="time" min="0" max="24">
-							<span class="slider-value">12</span>
-						</p>
-					</div>
-				</div>
-				<div class="walk_form" id="pointCal">
-					<p>Distance from Current Position<br></p>
-					<div class="range-slider">
-						<p>
-							<input class="slider-range" id="distance" type="range" name="distance" min="0" max="600000">
-							<span class="slider-value">300000</span>
-						</p><br>
-					</div>
-					<div id="map"></div>
-					<br>
-					<p><a onclick="input();">Submit</a></p>
-					<p><input type="submit" value="Submit"></p><br>
+				<div id="map"></div>
+				<br>
+				<p><a onclick="input();">Submit</a></p>
+				<p><input type="submit" value="Submit"></p><br>
 			</form>
 
 			<script>
-				// forms에서 입력받은 데이터 가져오고 필터링하기
-				var trail, course, difficulty, time, distance;
-				var filter;
+			// forms에서 입력받은 데이터 가져오고 필터링하기
+			var trail, course, difficulty, time, distance;
+			var filter;
 
-				function input() {
-					filter = "";
-					trail = document.getElementById('trail').value;
-					course = document.getElementById('course').value;
-					difficulty = $("input[type=radio][name=difficulty]:checked").val();
-					time = document.getElementById('time').value;
-					distance = document.getElementById('distance').value;
+			function input() {
+				filter = "";
+				trail = document.getElementById('trail').value;
+				course = document.getElementById('course').value;
+				difficulty = $("input[type=radio][name=difficulty]:checked").val();
+				time = document.getElementById('time').value;
+				distance = document.getElementById('distance').value;
 
-					/*&filter=lnk_nam=[object HTMLInputElement]&filter=cos_nam=[object HTMLInputElement]&filter=len_time:<:[object HTMLInputElement]*/
+				var minx, miny, maxx, maxy;
+				if (distance != null) {
+					if (navigator.geolocation) {
+						navigator.geolocation.getCurrentPosition(function(position) {
+							var cal = {
+								minx: position.coords.longitude - distance,
+								miny: position.coords.latitude - distance,
+								maxx : position.coords.longitude + distance,
+								mixy: position.coords.latitude + distance,
+							}
+						})
+						filter += "&geometry=BBOX(" + minx + ", " + miny + ", " + maxx + ", " + maxy + ")";
+					}
+				}
+				if (trail != "")
+				filter += "&filter=lnk_nam=" + trail;
+				if (course != "")
+				filter += "&filter=cos_nam=" + course;
+				if (difficulty != null) {
+					filter += "&filter=cos_lvl:=:" + difficulty
+				};
+				filter += "&filter=len_time:<:" + time;
 
-					if (trail != "")
-						filter += "&filter=lnk_nam=" + trail;
-					if (course != "")
-						filter += "&filter=cos_nam=" + course;
-					if (difficulty != null) {
-						filter += "&filter=cos_lvl:=:" + difficulty
-					};
-					filter += "&filter=len_time:<:" + time;
+				console.log(filter);
 
-					console.log(filter);
+				var s = document.createElement("script");
+				s.src = "http://apis.vworld.kr/2ddata/trkroad/data?apiKey=4CAD59E8-4728-3099-8B24-F00FB406A8BD&domain=https://cheonjihyun.github.io/sloth/&output=json" + filter;
+				document.body.appendChild(s);
 
-					// var s = document.createElement("script");
-					// s.src = "http://apis.vworld.kr/2ddata/trkroad/data?apiKey=4CAD59E8-4728-3099-8B24-F00FB406A8BD&domain=https://cheonjihyun.github.io/sloth/&output=json" + filter;
-					// document.body.appendChild(s);
 
-					// if (distance != null) {
-					// 	if (navigator.geolocation) {
-					// 		navigator.geolocation.getCurrentPosition(function(position) {
-					// 			var cal = {
-					// 				lat: position.coords.latitude - distance,
-					// 				lng: position.coords.longitude - distance
-					// 			}
-					// 		})
-					// 	}
-					// 	// filter += "&geometry=POINT(" + x + " " + y + ")";
-					// }
 
-					var circle; //global variable, consider adding it to map instead of window
-
+				var circle; //global variable, consider adding it to map instead of window
 				$(function() {
 					circle = new google.maps.Circle({
 						strokeColor: "#FF0000",
@@ -131,124 +132,124 @@
 					circle.setRadius(rad);
 				}
 
-				}
+			}
 			</script>
 
 			<script type="text/javascript">
-				// slider 옆에 실시간으로 값 띄우기
-				var rangeSlider = function() {
-					var slider = $('.range-slider'),
-						range = $('.slider-range'),
-						value = $('.slider-value');
+			// slider 옆에 실시간으로 값 띄우기
+			var rangeSlider = function() {
+				var slider = $('.range-slider'),
+				range = $('.slider-range'),
+				value = $('.slider-value');
 
-					slider.each(function() {
-						value.each(function() {
-							var value = $(this).prev().attr('value');
-							$(this).html(value);
-						});
-						range.on('input', function() {
-							$(this).next(value).html(this.value);
-						});
+				slider.each(function() {
+					value.each(function() {
+						var value = $(this).prev().attr('value');
+						$(this).html(value);
 					});
-				};
-				rangeSlider();
-
-				// google map api 불러와서 지도 그리고 distance 입력값에 따라 원그리기
-				var map, infoWindow;
-
-				function initMap() {
-					map = new google.maps.Map(document.getElementById("map"), {
-						center: new google.maps.LatLng(33.450701, 126.570667),
-						zoom: 6,
-						mapTypeId: google.maps.MapTypeId.roadmap
+					range.on('input', function() {
+						$(this).next(value).html(this.value);
 					});
-					infoWindow = new google.maps.InfoWindow;
+				});
+			};
+			rangeSlider();
 
-					// Try HTML5 geolocation.
-					if (navigator.geolocation) {
-						navigator.geolocation.getCurrentPosition(function(position) {
-							var pos = {
-								lat: position.coords.latitude,
-								lng: position.coords.longitude
-							};
+			// google map api 불러와서 지도 그리고 distance 입력값에 따라 원그리기
+			var map, infoWindow;
 
-							infoWindow.setPosition(pos);
-							infoWindow.setContent('Location found.');
-							infoWindow.open(map);
-							map.setCenter(pos);
-						}, function() {
-							handleLocationError(true, infoWindow, map.getCenter());
-						});
-					} else {
-						// Browser doesn't support Geolocation
-						handleLocationError(false, infoWindow, map.getCenter());
-					}
+			function initMap() {
+				map = new google.maps.Map(document.getElementById("map"), {
+					center: new google.maps.LatLng(33.450701, 126.570667),
+					zoom: 6,
+					mapTypeId: google.maps.MapTypeId.roadmap
+				});
+				infoWindow = new google.maps.InfoWindow;
+
+				// Try HTML5 geolocation.
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(function(position) {
+						var pos = {
+							lat: position.coords.latitude,
+							lng: position.coords.longitude
+						};
+
+						infoWindow.setPosition(pos);
+						infoWindow.setContent('Location found.');
+						infoWindow.open(map);
+						map.setCenter(pos);
+					}, function() {
+						handleLocationError(true, infoWindow, map.getCenter());
+					});
+				} else {
+					// Browser doesn't support Geolocation
+					handleLocationError(false, infoWindow, map.getCenter());
 				}
+			}
 
-				function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-					infoWindow.setPosition(pos);
-					infoWindow.setContent(browserHasGeolocation ?
-						'Error: The Geolocation service failed.' :
-						'Error: Your browser doesn\'t support geolocation.');
+			function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+				infoWindow.setPosition(pos);
+				infoWindow.setContent(browserHasGeolocation ?
+					'Error: The Geolocation service failed.' :
+					'Error: Your browser doesn\'t support geolocation.');
 					infoWindow.open(map);
 				}
 
 
 
-/*				function drawCircle() {
-					var circleOptions = new google.maps.Circle({
-						strokeColor: "FF0000",
-						strokeOpacity: 0.8,
-						strokeWeight: 2,
-						fillColor: "#FF0000",
-						fillOpacity: 0.3,
-						map: map,
-						center: map.center,
-						radius: 300000
-					});
-				}
-				drawCircle(); //circleOptions.setMap(null);
+				/*				function drawCircle() {
+				var circleOptions = new google.maps.Circle({
+				strokeColor: "FF0000",
+				strokeOpacity: 0.8,
+				strokeWeight: 2,
+				fillColor: "#FF0000",
+				fillOpacity: 0.3,
+				map: map,
+				center: map.center,
+				radius: 300000
+			});
+		}
+		drawCircle(); //circleOptions.setMap(null);
 
-				var changeCircle = function() {
-					var slider = $('.range-slider'),
-					range = $('.slider-range'),
-					value = $('.slider-value'),
-					circleRadius = $('.distance');
+		var changeCircle = function() {
+		var slider = $('.range-slider'),
+		range = $('.slider-range'),
+		value = $('.slider-value'),
+		circleRadius = $('.distance');
 
-					slider.each(function() {
-						value.each(function() {
-							var value = $(this).prev().attr('value');
-							circleOptions.setRadius(parseInt(circleRadius));
-						})
-					}
-				)}*/
+		slider.each(function() {
+		value.each(function() {
+		var value = $(this).prev().attr('value');
+		circleOptions.setRadius(parseInt(circleRadius));
+	})
+}
+)}*/
 /*						range.on('input', function() {
-							$(this).next(value).
-						})
-					})
+$(this).next(value).
+})
+})
 
-					var rangeSlider = function() {
-					var slider = $('.range-slider'),
-						range = $('.slider-range'),
-						value = $('.slider-value');
+var rangeSlider = function() {
+var slider = $('.range-slider'),
+range = $('.slider-range'),
+value = $('.slider-value');
 
-					slider.each(function() {
-						value.each(function() {
-							var value = $(this).prev().attr('value');
-							$(this).html(value);
-						});
-						range.on('input', function() {
-							$(this).next(value).html(this.value);
-						});
-					});
-				};
-				rangeSlider();*/
-			</script>
-			</div>
+slider.each(function() {
+value.each(function() {
+var value = $(this).prev().attr('value');
+$(this).html(value);
+});
+range.on('input', function() {
+$(this).next(value).html(this.value);
+});
+});
+};
+rangeSlider();*/
+</script>
+</div>
 
-			<div class="output" id=result>
-				<p></p>
-			</div>
-	</body>
+<div class="output" id=result>
+	<p></p>
+</div>
+</body>
 
 </html>
