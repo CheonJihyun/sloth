@@ -45,7 +45,7 @@ body {
 
 /* selection form style */
 .walk_form {
-	height : 600px;
+	height : 400px;
 }
 
 .walk_form p {
@@ -53,6 +53,10 @@ body {
 	font-size : 2em;
 	top : 50%;
 	left : 50%;
+}
+
+#levelcolumn div {
+	column-count: 3;
 }
 
 .level_div p {

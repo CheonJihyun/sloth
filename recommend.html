@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<title>SLOTH_recommend</title>
 	<link rel="stylesheet" type="text/css" href="style_recommend.css">
+	<script src="LatLngXY.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 
@@ -41,8 +42,8 @@
 					<p><img src="" alt="tired"></p>
 					<p><img src="" alt="frustrated"></p>
 					<p><img src="" alt="irritated"></p>
-					<!--신남 : far distance, midium~high difficulty
-	       고요 : low~medium difficulty, long time
+					<!--신남 : far distance, high difficulty
+	       고요 : medium difficulty, long time
 				 사랑 : low difficulty, short time
 				 불안 : low difficulty, near distance
 				 피곤 : near distance, low difficulty
@@ -102,6 +103,7 @@
 	<script>
 		function filterReply() {
 			var age, feeling, transportation=[], time, filter="";
+			var cos_lvl, len_time, distance;
 			age = $("input[type=radio][name=age]:checked").val();
 			feeling = $("input[type=radio][name=feeling]:checked").val();
 			function getTrans() {
@@ -112,6 +114,15 @@
 			getTrans();
 			time = $("input[type=radio][name=time]:checked").val();
 			console.log(age + " " + feeling + " " + transportation + " " + time);
+
+			// feeling filter
+			switch (feeling) {
+				case excited : difficulty = "상"; break;
+				case calm : difficulty = "중";
+				case loved :
+			}
+
+
 		}
 	</script>
 	<div class="result">
